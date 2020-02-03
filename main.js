@@ -16,7 +16,7 @@ newBtn.addEventListener("click", () => {
             "rounded",
             "shadow-lg",
             "cursor-pointer",
-            "hover:bg-green-500"
+            "hover:bg-blue-500"
         );
         newTodo.innerHTML = newText.value;
         newText.value = "";
@@ -27,39 +27,39 @@ newBtn.addEventListener("click", () => {
 });
 
 newText.addEventListener("keyup", event => {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
         event.preventDefault();
         newBtn.click();
     }
 });
 
 const move = (element, destination, convertTo) => {
-    if (element.localName == 'li') {
+    if (element.localName == "li") {
         if (convertTo == "completed") {
             element.classList.add(
-                "text-red",
+                "text-green-500",
                 "line-through",
-                "hover:bg-red-500",
+                "hover:bg-green-500",
                 "hover:text-white"
             );
-            todo.classList.remove("hover:bg-green-500");
+            element.classList.remove("hover:bg-blue-500");
         } else {
             element.classList.remove(
-                "text-red",
+                "text-green-500",
                 "line-through",
-                "hover:bg-red-500",
+                "hover:bg-green-500",
                 "hover:text-white"
             );
-            todo.classList.remove("hover:bg-green-500");
+            element.classList.add("hover:bg-blue-500");
         }
         destination.appendChild(element);
     }
 };
 
-pendingList.addEventListener('click', event => {
+pendingList.addEventListener("click", event => {
     move(event.target, completedList, "completed");
 });
 
-completedList.addEventListener('click', event => {
-    move(event.target, pendingList "pendings");
+completedList.addEventListener("click", event => {
+    move(event.target, pendingList, "pendings");
 });
